@@ -8,6 +8,8 @@ import br.com.zup.desafio2.model.Cliente;
 
 public class Main {
 
+	private static final int DIGITO_MAX = 4;
+	private static final int DIGITO_MIN = 0;
 	private static final String MSG_DE_INSTRUÇÃO_DO_MENU = "Olá seja bem vindo ao seu sistema de cadastro de clientes!"
 			+ " \nDigite :\n 1-[para inserir cadastro]\n 2-[para alterar cadastro]\n 3-[para buscar cadastro ]\n 4-[para deletar cadastro]";
 
@@ -20,7 +22,7 @@ public class Main {
 		do {
 			System.out.println(MSG_DE_INSTRUÇÃO_DO_MENU);
 			operação = teclado.nextInt();
-			if (operação < 0 || operação > 4) {
+			if (operação < DIGITO_MIN || operação > DIGITO_MAX) {
 				System.out.println("\nDigite uma operação válida\n");
 			}
 
@@ -28,8 +30,16 @@ public class Main {
 
 			case 1:
 				adicionaCliente(teclado, listaDeClientes);
-
 				break;
+			
+			case 2:
+				//TODO: método para alterar cadastro
+			
+			case 3:
+				//TODO: método para buscar cadastro
+				
+			case 4 :
+				//TODO: método para deletar cadastro
 
 			default:
 				break;
