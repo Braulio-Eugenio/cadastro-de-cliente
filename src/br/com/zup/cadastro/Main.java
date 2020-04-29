@@ -8,12 +8,26 @@ import br.com.zup.desafio2.model.Cliente;
 
 public class Main {
 
+	private static final String MSG_DE_INSTRUÇÃO_DO_MENU = "Olá seja bem vindo ao seu sistema de cadastro de clientes!"
+			+ " \nDigite :\n 1-[para inserir cadastro]\n 2-[para alterar cadastro]\n 3-[para buscar cadastro ]\n 4-[para deletar cadastro]";
+
 	public static void main(String[] args) {
 		Scanner teclado = new Scanner(System.in);
 		Map<Long, Cliente> listaDeClientes = new HashMap<Long, Cliente>();
 
-		adicionaCliente(teclado, listaDeClientes);
-		System.out.println();
+		int operação;
+
+		do {
+			System.out.println(MSG_DE_INSTRUÇÃO_DO_MENU);
+			operação = teclado.nextInt();
+			if (operação < 0 || operação > 4) {
+				System.out.println("\nDigite uma operação válida\n");
+			}
+			continue;
+			
+			
+
+		} while (operação != 0);
 
 	}
 
@@ -35,13 +49,17 @@ public class Main {
 
 		return listaDeClientes.put(clienteAdicionado.getCpf(), clienteAdicionado);
 	}
-	
-	
-	public static Cliente buscaCliente () {
+
+	public static Cliente buscaCliente(Map<Long, Cliente> listaDeClientes) {
 		Cliente clienteBuscado = new Cliente();
-		System.out.println("Digite o cpf do cliente :");
-		
-		return null;		
+		System.out.println(clienteBuscado.getNome());
+		System.out.println(clienteBuscado.getIdade());
+		System.out.println(clienteBuscado.getCpf());
+		System.out.println(clienteBuscado.getEmail());
+		System.out.println(clienteBuscado.getEndereco());
+		System.out.println(clienteBuscado.getTelefone());
+
+		return clienteBuscado;
 	}
 
 }
