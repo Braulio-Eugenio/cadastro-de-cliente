@@ -23,9 +23,17 @@ public class Main {
 			if (operação < 0 || operação > 4) {
 				System.out.println("\nDigite uma operação válida\n");
 			}
-			continue;
-			
-			
+
+			switch (operação) {
+
+			case 1:
+				adicionaCliente(teclado, listaDeClientes);
+
+				break;
+
+			default:
+				break;
+			}
 
 		} while (operação != 0);
 
