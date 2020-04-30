@@ -8,15 +8,16 @@ import br.com.zup.desafio2.model.Cliente;
 
 public class Main {
 
+	private static final String INSTRUCOES_SUBMENU = "Digite:\n1-[para buscar por um cliente]\n2-[Para buscar a lista de clientes]\n0-[para SAIR]";
 	private static final String DIGITE_O_CPF_PARA_DELETE = "Digite o cpf do cliente para excluir o cadastro :";
 	private static final String DIGITE_O_CPF_PARA_ALTERAR_CADASTRO = "Digite o cpf do cliente para alterar o cadastro :";
-	private static final String DIGITE_O_ENDEREÇO = "Digite o endereço :";
+	private static final String DIGITE_O_ENDERECO = "Digite o endereço :";
 	private static final String DIGITE_O_TELEFONE = "Digite o telefone :";
 	private static final String DIGITE_EMAIL = "Digite email :";
 	private static final String DIGITE_O_CPF = "Digite o cpf :";
 	private static final String DIGITE_A_IDADE = "Digite a idade :";
 	private static final String DIGITE_O_NOME = "Digite o nome :";
-	private static final String DIGITE_UMA_OPERAÇÃO_VÁLIDA = "\nDigite uma operação válida\n";
+	private static final String DIGITE_UMA_OPERACAO_VALIDA = "\nDigite uma operação válida\n";
 	private static final String TELEFONE = "Número de telefone: ";
 	private static final String ENDERECO = "Endereço físico: ";
 	private static final String E_MAIL = "Endereço de e-mail: ";
@@ -39,7 +40,7 @@ public class Main {
 			System.out.println(MSG_DE_INSTRUCAO_DO_MENU);
 			operação = teclado.nextInt();
 			if (operação < DIGITO_MIN || operação > DIGITO_MAX) {
-				System.out.println(DIGITE_UMA_OPERAÇÃO_VÁLIDA);
+				System.out.println(DIGITE_UMA_OPERACAO_VALIDA);
 			}
 
 			switch (operação) {
@@ -59,7 +60,7 @@ public class Main {
 			case 4:
 				excluirCadastro(teclado);
 				break;
-				
+
 			default:
 				break;
 			}
@@ -82,7 +83,7 @@ public class Main {
 		clienteAdicionado.setEmail(teclado.next());
 		System.out.println(DIGITE_O_TELEFONE);
 		clienteAdicionado.setTelefone(teclado.nextInt());
-		System.out.println(DIGITE_O_ENDEREÇO);
+		System.out.println(DIGITE_O_ENDERECO);
 		clienteAdicionado.setEndereco(teclado.next());
 
 		return listaDeClientes.put(clienteAdicionado.getCpf(), clienteAdicionado);
@@ -117,7 +118,7 @@ public class Main {
 		clienteAlterado.setEmail(teclado.next());
 		System.out.println(DIGITE_O_TELEFONE);
 		clienteAlterado.setTelefone(teclado.nextInt());
-		System.out.println(DIGITE_O_ENDEREÇO);
+		System.out.println(DIGITE_O_ENDERECO);
 		clienteAlterado.setEndereco(teclado.next());
 
 		listaClientes.put(cpf, clienteAlterado);
@@ -145,11 +146,10 @@ public class Main {
 	public static void subMenuDeBusca(Scanner teclado) {
 		int operacao;
 		do {
-			System.out.println(
-					"Digite:\n1-[para buscar por um cliente]\n2-[Para buscar a lista de clientes]\n0-[para SAIR]");
+			System.out.println(INSTRUCOES_SUBMENU);
 			operacao = teclado.nextInt();
 			if (operacao < 0 || operacao > 2) {
-				System.out.println(DIGITE_UMA_OPERAÇÃO_VÁLIDA);
+				System.out.println(DIGITE_UMA_OPERACAO_VALIDA);
 			}
 			switch (operacao) {
 			case 1:
