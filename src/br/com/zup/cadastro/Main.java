@@ -26,7 +26,7 @@ public class Main {
 	private static final int DIGITO_MAX = 4;
 	private static final int DIGITO_MIN = 0;
 	private static final String MSG_DE_INSTRUCAO_DO_MENU = "Olá seja bem vindo ao seu sistema de cadastro de clientes!"
-			+ " \nDigite :\n 1-[para inserir cadastro]\n 2-[para alterar cadastro]\n 3-[para buscar cadastro ]\n 4-[para deletar cadastro]";
+			+ " \nDigite :\n 1-[para inserir cadastro]\n 2-[para alterar cadastro]\n 3-[para buscar cadastro ]\n 4-[para deletar cadastro]\n 0-[para ENCERRAR]";
 	private static Map<Long, Cliente> listaClientes;
 
 	public static void main(String[] args) {
@@ -49,7 +49,7 @@ public class Main {
 				break;
 
 			case 2:
-
+				alteraCadastro(teclado);
 				break;
 
 			case 3:
@@ -57,9 +57,9 @@ public class Main {
 				break;
 
 			case 4:
-				// TODO: método para deletar cadastro
+				excluirCadastro(teclado);
 				break;
-
+				
 			default:
 				break;
 			}
@@ -69,6 +69,7 @@ public class Main {
 	}
 
 	public static Cliente adicionaCliente(Scanner teclado, Map<Long, Cliente> listaDeClientes) {
+
 		Cliente clienteAdicionado = new Cliente();
 
 		System.out.println(DIGITE_O_NOME);
@@ -102,17 +103,32 @@ public class Main {
 
 	}
 
-	public static Cliente alteraCadastro() {
+	public static void alteraCadastro(Scanner teclado) {
+
 		System.out.println(DIGITE_O_CPF_PARA_ALTERAR_CADASTRO);
-		return null;
+		Long cpf = teclado.nextLong();
+		Cliente clienteAlterado = listaClientes.get(cpf);
+
+		System.out.println(DIGITE_O_NOME);
+		clienteAlterado.setNome(teclado.next());
+		System.out.println(DIGITE_A_IDADE);
+		clienteAlterado.setIdade(teclado.nextInt());
+		System.out.println(DIGITE_EMAIL);
+		clienteAlterado.setEmail(teclado.next());
+		System.out.println(DIGITE_O_TELEFONE);
+		clienteAlterado.setTelefone(teclado.nextInt());
+		System.out.println(DIGITE_O_ENDEREÇO);
+		clienteAlterado.setEndereco(teclado.next());
+
+		listaClientes.put(cpf, clienteAlterado);
+		clienteBuscado(clienteAlterado);
 
 	}
 
-	public static Cliente excluirCadastro() {
+	public static void excluirCadastro(Scanner teclado) {
 		System.out.println(DIGITE_O_CPF_PARA_DELETE);
-
-		return null;
-
+		Long cpf = teclado.nextLong();
+		listaClientes.remove(cpf);
 	}
 
 	public static void clienteBuscado(Cliente clienteBuscado) {
@@ -129,20 +145,21 @@ public class Main {
 	public static void subMenuDeBusca(Scanner teclado) {
 		int operacao;
 		do {
-			System.out.println("Digite:\n1-[para buscar por um cliente]\n2-[Para buscar a lista de clientes]\n0-[para SAIR]");
+			System.out.println(
+					"Digite:\n1-[para buscar por um cliente]\n2-[Para buscar a lista de clientes]\n0-[para SAIR]");
 			operacao = teclado.nextInt();
-			if(operacao < 0 || operacao > 2) {
+			if (operacao < 0 || operacao > 2) {
 				System.out.println(DIGITE_UMA_OPERAÇÃO_VÁLIDA);
 			}
 			switch (operacao) {
 			case 1:
 				buscaCliente(teclado);
-				
+
 			case 2:
 				buscaListaDeClientes();
 			}
-		} while(operacao != 0);
-		
+		} while (operacao != 0);
+
 	}
 
 }
