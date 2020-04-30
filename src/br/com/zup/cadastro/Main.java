@@ -8,6 +8,10 @@ import br.com.zup.desafio2.model.Cliente;
 
 public class Main {
 
+	private static final int DIGITO_MAX_SUBMENU = 2;
+	private static final int DIGITO_MIN_SUBMENU = 0;
+	private static final String MSG_DE_INSTRUCAO_DO_MENU = "Olá seja bem vindo ao seu sistema de cadastro de clientes!"
+			+ " \nDigite :\n 1-[para inserir cadastro]\n 2-[para alterar cadastro]\n 3-[para buscar cadastro ]\n 4-[para deletar cadastro]\n 0-[para ENCERRAR]";
 	private static final String INSTRUCOES_SUBMENU = "Digite:\n1-[para buscar por um cliente]\n2-[Para buscar a lista de clientes]\n0-[para SAIR]";
 	private static final String DIGITE_O_CPF_PARA_DELETE = "Digite o cpf do cliente para excluir o cadastro :";
 	private static final String DIGITE_O_CPF_PARA_ALTERAR_CADASTRO = "Digite o cpf do cliente para alterar o cadastro :";
@@ -26,24 +30,26 @@ public class Main {
 	private static final String NOME = "Nome do cliente: ";
 	private static final int DIGITO_MAX = 4;
 	private static final int DIGITO_MIN = 0;
-	private static final String MSG_DE_INSTRUCAO_DO_MENU = "Olá seja bem vindo ao seu sistema de cadastro de clientes!"
-			+ " \nDigite :\n 1-[para inserir cadastro]\n 2-[para alterar cadastro]\n 3-[para buscar cadastro ]\n 4-[para deletar cadastro]\n 0-[para ENCERRAR]";
 	private static Map<Long, Cliente> listaClientes;
 
 	public static void main(String[] args) {
+
 		Scanner teclado = new Scanner(System.in);
+
 		listaClientes = new HashMap<Long, Cliente>();
 
-		int operação;
+		int operacao;
 
 		do {
+
 			System.out.println(MSG_DE_INSTRUCAO_DO_MENU);
-			operação = teclado.nextInt();
-			if (operação < DIGITO_MIN || operação > DIGITO_MAX) {
+			operacao = teclado.nextInt();
+			if (operacao < DIGITO_MIN || operacao > DIGITO_MAX) {
 				System.out.println(DIGITE_UMA_OPERACAO_VALIDA);
+
 			}
 
-			switch (operação) {
+			switch (operacao) {
 
 			case 1:
 				adicionaCliente(teclado, listaClientes);
@@ -65,7 +71,7 @@ public class Main {
 				break;
 			}
 
-		} while (operação != 0);
+		} while (operacao != 0);
 
 	}
 
@@ -95,11 +101,13 @@ public class Main {
 		Long cpf = teclado.nextLong();
 		Cliente cliente = listaClientes.get(cpf);
 		clienteBuscado(cliente);
+
 	}
 
 	public static void buscaListaDeClientes() {
 		for (Cliente cliente : listaClientes.values()) {
 			clienteBuscado(cliente);
+
 		}
 
 	}
@@ -130,6 +138,7 @@ public class Main {
 		System.out.println(DIGITE_O_CPF_PARA_DELETE);
 		Long cpf = teclado.nextLong();
 		listaClientes.remove(cpf);
+
 	}
 
 	public static void clienteBuscado(Cliente clienteBuscado) {
@@ -144,20 +153,27 @@ public class Main {
 	}
 
 	public static void subMenuDeBusca(Scanner teclado) {
+
 		int operacao;
+
 		do {
+
 			System.out.println(INSTRUCOES_SUBMENU);
 			operacao = teclado.nextInt();
-			if (operacao < 0 || operacao > 2) {
+			if (operacao < DIGITO_MIN_SUBMENU || operacao > DIGITO_MAX_SUBMENU) {
 				System.out.println(DIGITE_UMA_OPERACAO_VALIDA);
 			}
+
 			switch (operacao) {
+
 			case 1:
 				buscaCliente(teclado);
 
 			case 2:
 				buscaListaDeClientes();
+
 			}
+
 		} while (operacao != 0);
 
 	}
