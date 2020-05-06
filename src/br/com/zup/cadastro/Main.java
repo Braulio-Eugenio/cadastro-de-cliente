@@ -34,11 +34,10 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		Scanner teclado = new Scanner(System.in);
-
 		listaClientes = new HashMap<Long, Cliente>();
 
 		int operacao;
+		Scanner teclado = new Scanner(System.in);
 
 		do {
 
@@ -72,6 +71,8 @@ public class Main {
 			}
 
 		} while (operacao != 0);
+		
+		teclado.close();
 
 	}
 
@@ -79,8 +80,9 @@ public class Main {
 
 		Cliente clienteAdicionado = new Cliente();
 
+		teclado.nextLine();
 		System.out.println(DIGITE_O_NOME);
-		clienteAdicionado.setNome(teclado.next());
+		clienteAdicionado.setNome(teclado.nextLine());
 		System.out.println(DIGITE_A_IDADE);
 		clienteAdicionado.setIdade(teclado.nextInt());
 		System.out.println(DIGITE_O_CPF);
@@ -89,17 +91,19 @@ public class Main {
 		clienteAdicionado.setEmail(teclado.next());
 		System.out.println(DIGITE_O_TELEFONE);
 		clienteAdicionado.setTelefone(teclado.nextInt());
+		teclado.nextLine();
 		System.out.println(DIGITE_O_ENDERECO);
-		clienteAdicionado.setEndereco(teclado.next());
+		clienteAdicionado.setEndereco(teclado.nextLine());
 
 		return listaDeClientes.put(clienteAdicionado.getCpf(), clienteAdicionado);
 	}
 
 	public static void buscaCliente(Scanner teclado) {
 
-		System.out.println(DIGITE_O_CPF_PARA_DELETE);
+		System.out.println(DIGITE_O_CPF);
 		Long cpf = teclado.nextLong();
 		Cliente cliente = listaClientes.get(cpf);
+
 		clienteBuscado(cliente);
 
 	}
@@ -118,16 +122,19 @@ public class Main {
 		Long cpf = teclado.nextLong();
 		Cliente clienteAlterado = listaClientes.get(cpf);
 
+		teclado.nextLine();
 		System.out.println(DIGITE_O_NOME);
-		clienteAlterado.setNome(teclado.next());
+		clienteAlterado.setNome(teclado.nextLine());
 		System.out.println(DIGITE_A_IDADE);
 		clienteAlterado.setIdade(teclado.nextInt());
+		
 		System.out.println(DIGITE_EMAIL);
 		clienteAlterado.setEmail(teclado.next());
 		System.out.println(DIGITE_O_TELEFONE);
 		clienteAlterado.setTelefone(teclado.nextInt());
+		teclado.nextLine();
 		System.out.println(DIGITE_O_ENDERECO);
-		clienteAlterado.setEndereco(teclado.next());
+		clienteAlterado.setEndereco(teclado.nextLine());
 
 		listaClientes.put(cpf, clienteAlterado);
 		clienteBuscado(clienteAlterado);
@@ -168,9 +175,11 @@ public class Main {
 
 			case 1:
 				buscaCliente(teclado);
+				break;
 
 			case 2:
 				buscaListaDeClientes();
+				break;
 
 			}
 
